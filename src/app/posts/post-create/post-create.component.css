@@ -1,0 +1,20 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-card {
+  padding: 32px;
+}
+
+.buttonDiv {
+  align-items: left;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+button {
+  max-width: fit-content;
+  border-radius: 6px;
+}***REMOVED***
+***REMOVED***

@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
+
+.delete-button {
+  color: rgb(184, 1, 1);
+}
+
+.delete-button:hover {
+  background-color: rgb(255, 223, 223);
+}***REMOVED***
+***REMOVED***

@@ -1,0 +1,20 @@
+<mat-accordion multi="true">
+  @if (posts.length > 0) {
+    @for (post of posts; track $index) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{ post.title }}
+        </mat-expansion-panel-header>
+        <p>{{ post.content }}</p>
+        <mat-action-row>
+          <button matButton="filled" class="edit-button">Edit</button>
+          <button matButton="outlined" class="delete-button">Delete</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    }
+  }
+</mat-accordion>
+@if (posts.length <= 0) {
+  <p class="info-text mat-body-1">No posts added yet!</p>
+}***REMOVED***
+***REMOVED***
