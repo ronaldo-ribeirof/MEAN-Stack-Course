@@ -8,10 +8,12 @@
 }
 
 .delete-button {
-  color: rgb(184, 1, 1);
+  color: rgb(184, 1, 1) !important;
 }
 
 .delete-button:hover {
-  background-color: rgb(255, 223, 223);
+  color: white !important;
+  background-color: rgb(184, 1, 1);
+  border-color: rgb(184, 1, 1);
 }***REMOVED***
 ***REMOVED***
