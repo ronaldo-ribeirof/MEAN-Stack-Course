@@ -17,3 +17,7 @@ button {
   max-width: fit-content;
   border-radius: 6px;
 }
+
+mat-spinner {
+  margin: auto;
+}
