@@ -1,5 +1,8 @@
 <mat-card>
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  @if (isLoading) {
+    <mat-spinner></mat-spinner>
+  } @else {
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
     <mat-form-field>
       @if (title.value != '') {
         <mat-label>Post Title</mat-label>
@@ -7,7 +10,7 @@
       <input matInput
       type="text"
       name="title"
-      ngModel
+      [ngModel]="post?.title"
       required
       minlength="3"
       placeholder="Post Title"
@@ -24,7 +27,7 @@
         matInput
         rows="4"
         name="content"
-        ngModel
+        [ngModel]="post?.content"
         required
         placeholder="Post Content"
         #content="ngModel">
@@ -39,5 +42,6 @@
         type="submit">Save Post</button>
     </div>
   </form>
+  }
 </mat-card>***REMOVED***
 ***REMOVED***
