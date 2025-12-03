@@ -1,5 +1,27 @@
 mat-toolbar {
   background-color: rgb(59, 52, 161);
   color: white;
+  justify-content: space-between;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-button {
+  background-color: rgb(59, 52, 161);
+  color: white !important;
+}
+
+.header-button:hover {
+  background-color: rgb(42, 37, 116);
 }***REMOVED***
 ***REMOVED***
