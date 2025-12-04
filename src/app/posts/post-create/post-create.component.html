@@ -2,38 +2,35 @@
   @if (isLoading) {
     <mat-spinner></mat-spinner>
   } @else {
-  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
+  <form [formGroup]="form" (submit)="onSavePost()">
     <mat-form-field>
-      @if (title.value != '') {
+      @if (form.get('title')!.value != '') {
         <mat-label>Post Title</mat-label>
       }
       <input matInput
       type="text"
-      name="title"
-      [ngModel]="post?.title"
-      required
-      minlength="3"
-      placeholder="Post Title"
-      #title="ngModel">
-      @if (title.invalid) {
-        <mat-error>Please enter something.</mat-error>
+      [formControlName]="'title'"
+      placeholder="Post Title">
+      @if (form.get('title')!.invalid) {
+        <mat-error>Please enter a valid post title.</mat-error>
       }
     </mat-form-field>
+    <div>
+      <button matButton="outlined" type="button" (click)="filePicker.click()">Pick Image</button>
+      <input type="file" #filePicker>
+    </div>
     <mat-form-field>
-      @if (content.value != '') {
+      @if (form.get('content')!.value != '') {
         <mat-label>Post Content</mat-label>
       }
       <textarea
         matInput
         rows="4"
-        name="content"
-        [ngModel]="post?.content"
-        required
-        placeholder="Post Content"
-        #content="ngModel">
+        formControlName="content"
+        placeholder="Post Content">
       </textarea>
-      @if (content.invalid) {
-        <mat-error>Please enter something.</mat-error>
+      @if (form.get('content')!.invalid) {
+        <mat-error>Please enter a valid post content.</mat-error>
       }
     </mat-form-field>
     <div class="buttonDiv">
