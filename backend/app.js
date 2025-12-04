@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const postRoutes = require("./routes/posts");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://ron:tHlM3unh9hdUB5YV@cluster0.cyai759.mongodb.net/node-angular?retryWrites=true")
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
   console.log('Connected to database!');
 })
