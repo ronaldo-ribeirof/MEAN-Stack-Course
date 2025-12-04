@@ -9,8 +9,8 @@ import { RouterOutlet } from "@angular/router";
 @Component({
   selector: 'app-root',
   imports: [
-    PostCreateComponent, MatInputModule,
-    HeaderComponent, PostListComponent,
+    MatInputModule,
+    HeaderComponent,
     RouterOutlet
 ],
   templateUrl: './app.html',
