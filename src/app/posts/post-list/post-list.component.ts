@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatInputModule } from "@angular/material/input";
+import { MatInputModule } from '@angular/material/input';
 import { Post } from '../post.model';
 import { PostsService } from '../post.service';
 import { Subscription } from 'rxjs';
-import { MatAnchor } from "@angular/material/button";
-import { RouterLink } from "@angular/router";
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { MatAnchor } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-post-list',
@@ -22,18 +22,17 @@ export class PostListComponent implements OnInit, OnDestroy {
   // ];
   posts: Post[] = [];
   isLoading = false;
-  private postsSub: Subscription = new Subscription;
+  private postsSub: Subscription = new Subscription();
 
   constructor(public postsService: PostsService) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.postsService.getPosts();
-    this.postsSub = this.postsService.getPostUpdateListener()
-      .subscribe((posts: Post[]) => {
-        this.posts = posts;
-        this.isLoading = false;
-      });
+    this.postsSub = this.postsService.getPostUpdateListener().subscribe((posts: Post[]) => {
+      this.posts = posts;
+      this.isLoading = false;
+    });
   }
 
   onDelete(postId: string) {
