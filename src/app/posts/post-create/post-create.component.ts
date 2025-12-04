@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
+import { PostsService } from '../post.service';
+import { Post } from '../post.model';
+import { mimeType } from "./mime-type.validator";
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { PostsService } from '../post.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Post } from '../post.model';
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-post-create',
   imports: [
     ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCardModule,
-    MatButtonModule,
     MatProgressSpinner
 ],
   templateUrl: './post-create.component.html',
@@ -50,7 +53,10 @@ export class PostCreateComponent implements OnInit{
       }),
       image: new FormControl(null, {
         validators: [
-          Validators.required
+          Validators.required,
+        ],
+        asyncValidators: [
+          mimeType
         ]
       })
     });
@@ -66,7 +72,7 @@ export class PostCreateComponent implements OnInit{
             title: postData.title,
             content: postData.content
           };
-          this.form.setValue({
+          this.form.patchValue({
             title: this.post.title,
             content: this.post.content
           });
@@ -84,7 +90,7 @@ export class PostCreateComponent implements OnInit{
     this.form.get('image')?.updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
-      this.imagePreview = <string>reader.result;
+      this.imagePreview = reader.result as string;
     }
     reader.readAsDataURL(file);
   }
