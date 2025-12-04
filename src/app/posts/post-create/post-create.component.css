@@ -25,18 +25,5 @@ mat-spinner {
 
 input[type="file"] {
   visibility: hidden;
-}
-
-.image-preview {
-  height: 5rem;
-  margin: 1rem 0;
-}
-
-.image-preview img {
-  height: 100%;
-}
-
-.img-button {
-  margin: 1rem 0rem 1.5rem 0rem;
 }***REMOVED***
 ***REMOVED***
