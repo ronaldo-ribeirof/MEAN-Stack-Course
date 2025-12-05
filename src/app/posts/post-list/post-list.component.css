@@ -19,5 +19,14 @@ mat-spinner {
   color: white !important;
   background-color: rgb(184, 1, 1);
   border-color: rgb(184, 1, 1);
+}
+
+.post-image {
+  width: 100%;
+}
+
+.post-image img {
+  width: 100%;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }***REMOVED***
 ***REMOVED***
