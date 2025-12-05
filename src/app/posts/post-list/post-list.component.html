@@ -1,29 +1,36 @@
 @if (isLoading) {
-  <mat-spinner></mat-spinner>
+<mat-spinner></mat-spinner>
 } @else {
-  <mat-accordion multi="true">
-    @if (posts.length > 0) {
-      @for (post of posts; track $index) {
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            {{ post.title }}
-          </mat-expansion-panel-header>
-          <div class="post-image">
-            <img [src]="post.imagePath" [alt]="post.title">
-          </div>
-          <p>{{ post.content }}</p>
-          <mat-action-row>
-            <a matButton="filled" [routerLink]="['/edit', post.id]">Edit</a>
-            <button matButton="outlined" class="delete-button" (click)="onDelete(post.id)">
-              Delete
-            </button>
-          </mat-action-row>
-        </mat-expansion-panel>
-      }
+<mat-accordion multi="true">
+  @if (posts.length > 0) {
+    @for (post of posts; track $index) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{ post.title }}
+        </mat-expansion-panel-header>
+        <div class="post-image">
+          <img [src]="post.imagePath" [alt]="post.title" />
+        </div>
+        <p>{{ post.content }}</p>
+        <mat-action-row>
+          <a matButton="filled" [routerLink]="['/edit', post.id]">Edit</a>
+          <button matButton="outlined" class="delete-button" (click)="onDelete(post.id)">Delete</button>
+        </mat-action-row>
+      </mat-expansion-panel>
     }
-  </mat-accordion>
+  }
+
+</mat-accordion>
+}
+@if (posts.length > 0) {
+  <mat-paginator
+    [length]="totalPosts"
+    [pageSize]="postsPerPage"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)"
+  ></mat-paginator>
 }
 @if (posts.length <= 0 && !isLoading) {
-  <p class="info-text mat-body-1">No posts added yet!</p>
+<p class="info-text mat-body-1">No posts added yet!</p>
 }***REMOVED***
 ***REMOVED***

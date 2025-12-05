@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatInputModule } from '@angular/material/input';
 import { Post } from '../post.model';
 import { PostsService } from '../post.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-post-list',
-  imports: [MatExpansionModule, MatAnchor, RouterLink, MatProgressSpinner],
+  imports: [MatExpansionModule, MatAnchor, RouterLink, MatProgressSpinner, MatPaginatorModule],
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.css',
 })
@@ -22,21 +22,36 @@ export class PostListComponent implements OnInit, OnDestroy {
   // ];
   posts: Post[] = [];
   isLoading = false;
+  totalPosts = 0;
+  postsPerPage = 2;
+  currentPage = 1;
+  pageSizeOptions = [1, 2, 5, 10];
   private postsSub: Subscription = new Subscription();
 
   constructor(public postsService: PostsService) {}
 
   ngOnInit() {
     this.isLoading = true;
-    this.postsService.getPosts();
-    this.postsSub = this.postsService.getPostUpdateListener().subscribe((posts: Post[]) => {
-      this.posts = posts;
+    this.postsService.getPosts(this.postsPerPage, this.currentPage);
+    this.postsSub = this.postsService.getPostUpdateListener().subscribe((postData: { posts: Post[], postCount: number }) => {
       this.isLoading = false;
+      this.totalPosts = postData.postCount;
+      this.posts = postData.posts;
     });
   }
 
+  onChangedPage(pageData: PageEvent) {
+    this.isLoading = true;
+    this.currentPage = pageData.pageIndex + 1;
+    this.postsPerPage = pageData.pageSize;
+    this.postsService.getPosts(this.postsPerPage, this.currentPage);
+  }
+
   onDelete(postId: string) {
-    this.postsService.deletePost(postId);
+    this.isLoading = true;
+    this.postsService.deletePost(postId).subscribe(() => {
+      this.postsService.getPosts(this.postsPerPage, this.currentPage);
+    });
   }
 
   ngOnDestroy() {
