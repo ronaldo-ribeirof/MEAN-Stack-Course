@@ -5,12 +5,13 @@ const mongoose = require('mongoose');
 // require('dotenv').config();
 
 const postRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user')
 
 const app = express();
 
 mongoose
   .connect(
-    'mongodb+srv://ron:tHlM3unh9hdUB5YV@cluster0.cyai759.mongodb.net/node-angular?retryWrites=true&w=majority',
+    'mongodb+srv://ron:tHlM3unh9hdUB5YV@cluster0.cyai759.mongodb.net/node-angular',
   )
   .then(() => {
     console.log('Connected to database!');
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/posts', postRoutes);
+app.use('/api/user', userRoutes);
 
 module.exports = app;***REMOVED***
 ***REMOVED***

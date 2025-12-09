@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatCard } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,15 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+    isLoading = false;
+
+    constructor(public authService: AuthService) {}
+
   onLogin(form: NgForm) {
-    console.log(form.value);
+    if (form.invalid) {
+      return;
+    }
+    this.authService.login(form.value.email, form.value.password);
   }
 }***REMOVED***
 ***REMOVED***
