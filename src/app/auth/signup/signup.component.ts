@@ -8,11 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   imports: [FormsModule, MatInputModule, MatProgressSpinner, MatCard, MatButtonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css',
 })
-export class LoginComponent {
-  onLogin(form: NgForm) {
+export class SignupComponent {
+  onSignup(form: NgForm) {
     console.log(form.value);
   }
 }***REMOVED***
