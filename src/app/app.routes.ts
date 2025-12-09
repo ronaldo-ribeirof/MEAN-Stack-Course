@@ -10,5 +10,4 @@ export const routes: Routes = [
   { path: 'edit/:postId', component: PostCreateComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-];***REMOVED***
-***REMOVED***
+];

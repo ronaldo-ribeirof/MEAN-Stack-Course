@@ -9,5 +9,4 @@ import { MatAnchor } from '@angular/material/button';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}***REMOVED***
-***REMOVED***
+export class HeaderComponent {}
