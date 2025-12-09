@@ -23,5 +23,4 @@ export class LoginComponent {
     }
     this.authService.login(form.value.email, form.value.password);
   }
-}***REMOVED***
-***REMOVED***
+}

@@ -11,7 +11,7 @@ const app = express();
 
 mongoose
   .connect(
-    'mongodb+srv://ron:tHlM3unh9hdUB5YV@cluster0.cyai759.mongodb.net/node-angular',
+    MONGODB_URI
   )
   .then(() => {
     console.log('Connected to database!');
@@ -34,5 +34,4 @@ app.use((req, res, next) => {
 app.use('/api/posts', postRoutes);
 app.use('/api/user', userRoutes);
 
-module.exports = app;***REMOVED***
-***REMOVED***
+module.exports = app;

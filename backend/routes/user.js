@@ -64,5 +64,4 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-module.exports = router;***REMOVED***
-***REMOVED***
+module.exports = router;
