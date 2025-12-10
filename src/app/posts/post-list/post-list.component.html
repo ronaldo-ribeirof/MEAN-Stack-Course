@@ -12,10 +12,12 @@
           <img [src]="post.imagePath" [alt]="post.title" />
         </div>
         <p>{{ post.content }}</p>
-        <mat-action-row>
-          <a matButton="filled" [routerLink]="['/edit', post.id]">Edit</a>
-          <button matButton="outlined" class="delete-button" (click)="onDelete(post.id)">Delete</button>
-        </mat-action-row>
+        @if (userIsAuthenticated) {
+          <mat-action-row>
+            <a matButton="filled" [routerLink]="['/edit', post.id]">Edit</a>
+            <button matButton="outlined" class="delete-button" (click)="onDelete(post.id)">Delete</button>
+          </mat-action-row>
+        }
       </mat-expansion-panel>
     }
   }

@@ -30,8 +30,10 @@
         <mat-error>Please enter a valid password.</mat-error>
       }
     </mat-form-field>
-    <div class="buttonDiv">
-      <button matButton="filled" type="submit">Login</button>
-    </div>
+    @if (!isLoading) {
+      <div class="buttonDiv">
+        <button matButton="filled" type="submit">Login</button>
+      </div>
+    }
   </form>
 </mat-card>

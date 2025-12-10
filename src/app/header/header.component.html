@@ -1,20 +1,30 @@
 <mat-toolbar color="primary">
   <span><a routerLink="/">MyMessages</a></span>
   <ul>
+    @if (userIsAuthenticated) {
     <li>
       <a class="header-button" mat-button routerLink="/create" routerLinkActive="mat-accent"
         >New Post</a
       >
     </li>
-    <li>
-      <a class="header-button" mat-button routerLink="/login" routerLinkActive="mat-accent"
-        >Login</a
-      >
-    </li>
+    }
+    @if (!userIsAuthenticated) {
+      <li>
+        <a class="header-button" mat-button routerLink="/login" routerLinkActive="mat-accent"
+          >Login</a
+        >
+      </li>
+    }
+    @if (!userIsAuthenticated) {
     <li>
       <a class="header-button" mat-button routerLink="/signup" routerLinkActive="mat-accent"
         >Signup</a
       >
     </li>
+    } @if (userIsAuthenticated) {
+    <li>
+      <button class="header-button" mat-button (click)="onLogout()">Logout</button>
+    </li>
+    }
   </ul>
 </mat-toolbar>
