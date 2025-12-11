@@ -35,15 +35,22 @@ export class AuthService {
 
   createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
-    this.http.post('http://localhost:3000/api/user/signup', authData).subscribe((response) => {
-      console.log(response);
-    });
+    this.http
+      .post('http://localhost:3000/api/user/signup', authData)
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      }, error => {
+        this.authStatusListener.next(false);
+      });
   }
 
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http
-      .post<{ token: string, expiresIn: number, userId: string }>('http://localhost:3000/api/user/login', authData)
+      .post<{ token: string; expiresIn: number; userId: string }>(
+        'http://localhost:3000/api/user/login',
+        authData
+      )
       .subscribe((response) => {
         const token = response.token;
         this.token = token;
@@ -59,6 +66,8 @@ export class AuthService {
           this.saveAuthData(token, expirationDate, this.userId);
           this.router.navigate(['/']);
         }
+      }, error => {
+        this.authStatusListener.next(false);
       });
   }
 
@@ -92,7 +101,7 @@ export class AuthService {
     console.log('Setting timer: ' + duration);
     this.tokentimer = setTimeout(() => {
       this.logout();
-    }, duration*1000);
+    }, duration * 1000);
   }
 
   private saveAuthData(token: string, expirationDate: Date, userId: string) {
@@ -117,7 +126,7 @@ export class AuthService {
     return {
       token: token!,
       expirationDate: new Date(expirationDate!),
-      userId: userId
+      userId: userId,
     };
   }
 }
